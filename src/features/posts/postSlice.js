@@ -16,8 +16,10 @@ export const fetchPosts = createAsyncThunk('posts/fetchPosts', async () => {
 })
 
 export const addNewPost = createAsyncThunk('posts/addNewPost', async (initialPost) => {
-    const response = await axios.post(POSTS_URL, initialPost)
+    const response = await axios.post(POSTS_URL, initialPost) 
+    console.log(initialPost)
     return response.data
+   
 })
 
 const postsSlice = createSlice({
@@ -103,7 +105,7 @@ const postsSlice = createSlice({
                     hooray: 0,
                     heart: 0,
                     rocket: 0,
-                    eyes: 0
+                    coffee: 0
                 }
                 console.log(action.payload)
                 state.posts.push(action.payload)
@@ -114,6 +116,8 @@ const postsSlice = createSlice({
 export const selectAllPosts = (state) => state.posts.posts;
 export const getPostsStatus = (state) => state.posts.status;
 export const getPostsError = (state) => state.posts.error;
+
+export const selectPostById = (state,postId) => state.posts.posts.find(post => post.id === postId)
 
 export const { postAdded, reactionAdded } = postsSlice.actions
 

@@ -7,6 +7,7 @@ const initialState = []
 
 export const fetchUsers = createAsyncThunk('users/fetchUsers', async () => {
     const response = await axios.get(USERS_URL);
+    console.log(response.data)
     return response.data
 })
 
@@ -17,6 +18,7 @@ const usersSlice = createSlice({
     extraReducers(builder) {
         builder.addCase(fetchUsers.fulfilled, (state, action) => {
             return action.payload;
+           
         })
     }
 })
